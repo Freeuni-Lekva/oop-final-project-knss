@@ -13,10 +13,16 @@ import static com.example.util.Constants.USER_DAO_KEY;
 public class Registration extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = (User) request.getSession().getAttribute("userInfo");
+        if (user != null) {
+            response.sendRedirect("/problems/html/problems.html");
+            return;
+        }
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        User user = new User(username, password);
+        user = new User(username, password);
         UserDao userDao = (UserDao) request.getServletContext().getAttribute(USER_DAO_KEY);
 
         if (user.getUsername() == null || user.getPassword() == null
@@ -26,7 +32,8 @@ public class Registration extends HttpServlet {
             //TODO handle failed login
         } else {
             userDao.addUser(user);
-            //TODO handle successful login
+            request.getSession().setAttribute("userInfo", user);
+            response.sendRedirect("/problems/html/problems.html");
         }
     }
 }

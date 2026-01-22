@@ -29,7 +29,6 @@ public class ProcessCodeRunner {
                         List<Integer> input = Arrays.stream(args[0].split(","))
                                                    .map(Integer::parseInt)
                                                    .toList();
-                        System.out.println(Solution.solve(input));
                     }
                 }
             """;
@@ -79,7 +78,6 @@ public class ProcessCodeRunner {
 
 
         if (!result) {
-            System.out.println("time limit exceeded");
             return;
         }
 
@@ -91,7 +89,6 @@ public class ProcessCodeRunner {
             outputBuilder.append(line);
         }
         String output = outputBuilder.toString().trim();
-        System.out.println(output);
 
         FileUtils.deleteDirectory(WORKDIR.toFile());
     }

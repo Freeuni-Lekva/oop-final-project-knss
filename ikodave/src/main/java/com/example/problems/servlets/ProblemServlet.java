@@ -5,7 +5,7 @@ import com.example.problems.DTO.Problem;
 import com.example.problems.DTO.Topic;
 import com.example.problems.FrontResponse.ProblemSpecificResponse;
 import com.example.problems.utils.ProblemTitle;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.DAO.TestDAO;
 import com.example.submissions.DTO.TestCase;
 import com.google.gson.Gson;
@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 public class ProblemServlet extends HttpServlet {
 

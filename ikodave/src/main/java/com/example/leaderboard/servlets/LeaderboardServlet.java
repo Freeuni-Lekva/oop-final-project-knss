@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.GSON_KEY;
-import static com.example.util.AttributeConstants.LEADERBOARD_DAO_KEY;
+import static com.example.constants.AttributeConstants.GSON_KEY;
+import static com.example.constants.AttributeConstants.LEADERBOARD_DAO_KEY;
 
 public class LeaderboardServlet extends HttpServlet {
     @Override

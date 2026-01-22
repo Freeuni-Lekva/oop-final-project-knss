@@ -1,6 +1,6 @@
 package com.example.submissions.servlets;
 
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 public class AllSubmissionsPageServlet extends HttpServlet {
 

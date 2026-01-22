@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', (e) => {
     addButtonListeners();
     loadUserSubmissions();
+    registerSubmissionsAsyncListeners();
 });
 
 function addButtonListeners() {
@@ -42,7 +43,7 @@ function loadUserSubmissions() {
 
                 // Verdict header with color coding
                 const header = document.createElement('h5');
-                header.textContent = `#${index + 1} — ${sub.verdict}`;
+                header.textContent = `#${submissions.length - index} — ${sub.verdict}`;
                 const status = sub.verdict.toLowerCase();
                 header.classList.add('mb-2');
                 if (status === 'accepted') {

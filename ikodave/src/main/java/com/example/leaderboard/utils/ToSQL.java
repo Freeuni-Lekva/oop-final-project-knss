@@ -1,18 +1,20 @@
 package com.example.leaderboard.utils;
 
-import com.example.util.DatabaseConstants.*;
+import com.example.constants.DatabaseConstants.*;
 
 import static java.lang.String.format;
 
 public class ToSQL {
     public static String getUsersScored() {
-        return format("SELECT USERS.%s AS \"USER\", " +
-                        "(SELECT COUNT(DISTINCT SUBMISSIONS.%s) " +
-                        "FROM %s USERCOUNTER " +
-                        "LEFT JOIN %s SUBMISSIONS ON SUBMISSIONS.%s = USERCOUNTER.%s " +
-                        "JOIN %s VERDICTS ON VERDICTS.%s = SUBMISSIONS.%s " +
-                        "WHERE VERDICTS.%s = 'Accepted' AND USERCOUNTER.%s = USERS.%s) AS SCORE " +
-                        "FROM %s USERS " +
+        return String.format(
+                "SELECT u.%s AS \"USER\", " +
+                        "(SELECT COUNT(DISTINCT s.%s) " +
+                        "FROM %s uc " +
+                        "LEFT JOIN %s s ON s.%s = uc.%s " +
+                        "JOIN %s v ON v.%s = s.%s " +
+                        "WHERE v.%s = 'Accepted' AND uc.%s = u.%s) AS SCORE " +
+                        "FROM %s u " +
+                        "WHERE u.%s = TRUE " +
                         "ORDER BY SCORE DESC;",
                 Users.COL_USERNAME,
                 Submissions.COL_PROBLEM_ID,
@@ -26,7 +28,9 @@ public class ToSQL {
                 SubmissionVerdict.COL_VERDICT,
                 Users.COL_ID,
                 Users.COL_ID,
-                Users.TABLE_NAME
+                Users.TABLE_NAME,
+                Users.COL_IS_VERIFIED
         );
     }
+
 }

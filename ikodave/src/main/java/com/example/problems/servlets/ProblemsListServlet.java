@@ -8,7 +8,7 @@ import com.example.problems.DTO.Topic;
 import com.example.problems.Filters.*;
 import com.example.problems.FrontResponse.ProblemListResponse;
 import com.example.problems.utils.FilterCriteria;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServlet;
@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 public class ProblemsListServlet extends HttpServlet {
 

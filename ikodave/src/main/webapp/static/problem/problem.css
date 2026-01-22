@@ -1,0 +1,75 @@
+body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+.header { background: #3f4a5a; color: #fff; padding: 0.5rem 1rem; display: flex; align-items: center; height: 55px}
+.header a { color: #fff; text-decoration: none; margin-right: 1rem; }
+.content { max-width: 900px; margin: 2rem auto; background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.title-bar { padding: 1rem; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center; }
+.title { font-size: 1.5rem; font-weight: bold; }
+.limits { font-size: 0.9rem; color: #555; }
+.section { padding: 1rem; }
+.section-title { font-weight: bold; margin-bottom: 0.5rem; }
+.example { background: #f8f8f8; border: 1px solid #ddd; padding: 0.75rem; margin-bottom: 1rem; border-radius: 4px; }
+pre { white-space: pre-wrap; word-wrap: break-word; margin: 0; }
+.tags { padding: 0.5rem 1rem; border-top: 1px solid #e0e0e0; background: #fafafa; }
+.tag { display: inline-block; background: #e0e0e0; color: #333; border-radius: 3px; padding: 0.2rem 0.5rem; margin: 0.1rem; font-size: 0.85rem; }
+.btn-link {
+    background: none;
+    border: none;
+    margin-right: 1.5rem;
+    padding: 0;
+    font: inherit;
+    color: #fff;
+    cursor: pointer;
+}
+.btn-link:hover, .btn-link:focus {
+    text-decoration: underline;
+    outline: none;
+}
+.btn-link:hover {
+    color: yellow;
+}
+
+
+.status {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.difficulty {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.difficulty.easy   { background-color: #e6ffed; color: #228B22; }
+.difficulty.medium { background-color: #fff4e5; color: #FF8C00; }
+.difficulty.hard   { background-color: #ffe6e8; color: #DC143C; }
+
+.status {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.status.attempted { background-color: #fff4e5; color: #FF8C00; }
+.status.todo      { background-color: #e5f0ff; color: #1E90FF; }
+.status.solved    { background-color: #e6ffed; color: #228B22; }  /* alias for solved */
+
+#problemTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3f4a5a;
+    margin: 0;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+#problemLimits {
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: 0.5rem;
+}
+#problemLimits strong {
+    color: #228B22;
+}

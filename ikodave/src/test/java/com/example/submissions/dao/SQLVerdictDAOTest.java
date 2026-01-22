@@ -2,7 +2,7 @@ package com.example.submissions.dao;
 
 import com.example.submissions.DAO.SQLVerdictDAO;
 import com.example.submissions.DTO.SubmissionVerdict;
-import com.example.util.DatabaseConstants;
+import com.example.constants.DatabaseConstants;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.*;
 

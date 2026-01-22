@@ -3,6 +3,7 @@ package com.example.submissions.Response;
 import java.sql.Timestamp;
 
 public class SubmissionResponse {
+    private final int id;
     private final Timestamp submitDate;
     private final String username;
     private final String solutionCode;
@@ -13,7 +14,9 @@ public class SubmissionResponse {
     private final long memory;
     private final String log;
 
-    public SubmissionResponse(Timestamp submitDate, String username, String solutionCode, String problemTitle, String codeLanguage, String verdict, long time, long memory, String log) {
+
+    public SubmissionResponse(int id, Timestamp submitDate, String username, String solutionCode, String problemTitle, String codeLanguage, String verdict, long time, long memory, String log) {
+        this.id = id;
         this.submitDate = submitDate;
         this.username = username;
         this.solutionCode = solutionCode;
@@ -31,6 +34,10 @@ public class SubmissionResponse {
 
     public Timestamp getSubmitDate() {
         return submitDate;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {

@@ -1,8 +1,7 @@
 package com.example.leaderboard.dao;
 
 import com.example.leaderboard.dto.UserWithScore;
-import com.example.leaderboard.utils.ToSQL;
-import com.example.util.DatabaseConstants;
+import com.example.constants.DatabaseConstants;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.*;
 

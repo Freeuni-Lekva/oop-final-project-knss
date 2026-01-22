@@ -1,7 +1,7 @@
 package com.example.admin.dao;
 
 import com.example.admin.dto.Role;
-import com.example.util.DatabaseConstants;
+import com.example.constants.DatabaseConstants;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.*;
 

@@ -9,7 +9,6 @@ import com.example.problems.DTO.Difficulty;
 import com.example.problems.DTO.Problem;
 import com.example.problems.DTO.Topic;
 import com.example.submissions.DAO.TestDAO;
-import com.example.submissions.DTO.Submission;
 import com.example.submissions.DTO.TestCase;
 import com.google.gson.Gson;
 
@@ -21,7 +20,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.*;
+import static com.example.constants.AttributeConstants.*;
 
 @WebServlet(name = "AddProblemServlet", value = "/api/AddProblemServlet")
 public class AddProblemServlet extends HttpServlet {

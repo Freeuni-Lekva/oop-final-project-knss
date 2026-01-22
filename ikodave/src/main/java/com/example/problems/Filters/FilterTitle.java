@@ -2,10 +2,8 @@ package com.example.problems.Filters;
 
 import com.example.problems.Filters.Parameters.Parameter;
 import com.example.problems.Filters.Parameters.ParameterString;
-import com.example.util.DatabaseConstants.*;
-import org.apache.commons.dbcp2.BasicDataSource;
+import com.example.constants.DatabaseConstants.*;
 
-import java.security.PrivilegedAction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

@@ -1,8 +1,7 @@
 package com.example.problems.Filters;
 
-import com.example.problems.Filters.FilterStatusAttempted;
 import com.example.problems.Filters.Parameters.Parameter;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;

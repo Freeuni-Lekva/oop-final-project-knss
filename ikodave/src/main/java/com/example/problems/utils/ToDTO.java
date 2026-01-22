@@ -2,12 +2,13 @@ package com.example.problems.utils;
 
 import com.example.problems.DTO.*;
 import com.example.problems.FrontResponse.ProblemListResponse;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
-import static com.example.util.DatabaseConstants.*;
+import static com.example.constants.DatabaseConstants.*;
 
 public class ToDTO {
 
@@ -15,10 +16,14 @@ public class ToDTO {
         try {
             User user = new User();
             user.setId(rs.getInt(Users.COL_ID));
-            user.setUsername(rs.getString(Users.COL_USERNAME));
-            user.setPassword(rs.getString(Users.COL_PASSWORD));
             user.setRoleId(rs.getInt(Users.COL_ROLE_ID));
-            user.setRegisterDate(rs.getDate(Users.COL_REGISTER_DATE));
+            user.setMail(rs.getString(Users.COL_MAIL));
+            user.setUsername(rs.getString(Users.COL_USERNAME));
+            user.setPasswordHash(rs.getString(Users.COL_PASSWORD_HASH));
+            user.setIsVerified(rs.getBoolean(Users.COL_IS_VERIFIED));
+            user.setVerificationCode(rs.getString(Users.COL_VERIFICATION_TOKEN));
+            user.setVerificationCodeExpiry(rs.getObject(Users.COL_VERIFICATION_TOKEN_EXPIRY, LocalDateTime.class));
+            user.setRegisterDate(rs.getTimestamp(Users.COL_REGISTER_DATE));
             return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -89,8 +94,6 @@ public class ToDTO {
             }
             int acceptedCount = rs.getInt("accepts");
             int notAcceptedCount = rs.getInt("notAccepts");
-            System.out.println(acceptedCount);
-            System.out.println(notAcceptedCount);
             if (acceptedCount > 0) {
                 return "Solved";
             }

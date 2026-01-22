@@ -2,14 +2,13 @@ package com.example.submissions.servlets;
 
 import com.example.problems.DAO.ProblemDAO;
 import com.example.registration.dao.UserDAO;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.DAO.CodeLanguageDAO;
 import com.example.submissions.DAO.SubmissionDAO;
 import com.example.submissions.DAO.VerdictDAO;
 import com.example.submissions.DTO.CodeLanguage;
 import com.example.submissions.DTO.Submission;
 import com.example.submissions.DTO.SubmissionVerdict;
-import com.example.submissions.Response.SubmissionResponse;
 import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +26,7 @@ import java.io.StringWriter;
 import java.sql.Timestamp;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.*;
+import static com.example.constants.AttributeConstants.*;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 

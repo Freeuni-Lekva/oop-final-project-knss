@@ -8,8 +8,8 @@ import com.example.submissions.DTO.TestCase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.example.util.DatabaseConstants;
-import com.example.util.DatabaseConstants.*;
+import com.example.constants.DatabaseConstants;
+import com.example.constants.DatabaseConstants.*;
 import com.example.submissions.DTO.SubmissionVerdict;
 
 public class ToDTO {

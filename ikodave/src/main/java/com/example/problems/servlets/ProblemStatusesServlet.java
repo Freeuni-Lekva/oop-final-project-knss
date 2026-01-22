@@ -1,10 +1,6 @@
 package com.example.problems.servlets;
 
-import com.example.problems.DAO.DifficultyDAO;
-import com.example.problems.DAO.TopicDAO;
-import com.example.problems.DTO.Difficulty;
 import com.example.problems.DTO.Status;
-import com.example.problems.DTO.Topic;
 import com.example.submissions.DAO.StatusDAO;
 import com.google.gson.Gson;
 
@@ -14,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.*;
+import static com.example.constants.AttributeConstants.*;
 
 public class ProblemStatusesServlet extends HttpServlet {
 

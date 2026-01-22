@@ -1,6 +1,6 @@
 package com.example.admin.util;
 
-import com.example.util.DatabaseConstants;
+import com.example.constants.DatabaseConstants;
 
 import static java.lang.String.format;
 

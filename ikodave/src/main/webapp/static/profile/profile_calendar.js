@@ -1,9 +1,6 @@
 function addMonthPickerListener() {
     const monthPicker = document.getElementById('calendar-month-picker');
-
-    monthPicker.addEventListener('change', () => {
-        populateCalendar();
-    });
+    monthPicker.addEventListener('change', populateCalendar);
 }
 
 function addCalendarNavListeners() {
@@ -34,7 +31,8 @@ function adjustMonth(pickerId, delta) {
     const newMonth = String(date.getMonth() + 1).padStart(2, '0');
 
     picker.value = `${newYear}-${newMonth}`;
-    picker.dispatchEvent(new Event('change'));
+    // Force the calendar to update immediately
+    populateCalendar();
 }
 
 
@@ -126,5 +124,10 @@ function renderCalendar(submissionDates, month, year) {
         calendarGrid.appendChild(cell);
     }
 
-    attachCalendarDayClickHandlers(username).catch(console.error);
+    // Wrap the click handler attachment in try-catch to prevent errors from blocking calendar updates
+    try {
+        attachCalendarDayClickHandlers(username).catch(console.error);
+    } catch (error) {
+        console.error('Error attaching calendar click handlers:', error);
+    }
 }

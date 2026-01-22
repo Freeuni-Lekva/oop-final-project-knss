@@ -1,9 +1,6 @@
 package com.example.problems.Filters;
 
-import com.example.problems.Filters.Filter;
-import com.example.problems.Filters.FilterAndLoggedOut;
 import com.example.problems.Filters.Parameters.Parameter;
-import com.example.util.DatabaseConstants;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;

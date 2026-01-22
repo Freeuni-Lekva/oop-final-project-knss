@@ -14,9 +14,7 @@ public class JavaLang implements CodeLang {
     @Override
     public void createFiles(Path path, String solutionCode) {
         try {
-            System.out.println("writing java inside " + path.toString());
             Files.writeString(path.resolve(JAVA_FILE_NAME + ".java"), solutionCode);
-            System.out.println("finished writing java inside " + path.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -4,7 +4,6 @@ package com.example.problems.Filters;
 import com.example.problems.DTO.Topic;
 import com.example.problems.Filters.Parameters.Parameter;
 import com.example.problems.Filters.Parameters.ParameterString;
-import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.util.DatabaseConstants.*;
+import static com.example.constants.DatabaseConstants.*;
 import static java.lang.String.format;
 
 public class FilterTopic implements Filter {

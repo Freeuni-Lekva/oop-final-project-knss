@@ -3,7 +3,7 @@ package com.example.user_profile.servlets;
 import com.example.problems.DAO.DifficultyDAO;
 import com.example.problems.DTO.Difficulty;
 import com.example.registration.dao.UserDAO;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.DAO.VerdictDAO;
 import com.example.submissions.DTO.SubmissionVerdict;
 import com.example.user_profile.Response.UserSubmissionStats;
@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.DatabaseConstants.DifficultyElements.*;
-import static com.example.util.DatabaseConstants.ProblemVerdictElements.VERDICT_ACCEPTED;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.DatabaseConstants.DifficultyElements.*;
+import static com.example.constants.DatabaseConstants.ProblemVerdictElements.VERDICT_ACCEPTED;
 
 public class ProfileSubmissionStatsServlet extends HttpServlet {
 
@@ -36,6 +36,10 @@ public class ProfileSubmissionStatsServlet extends HttpServlet {
         String username = usernameBody.getUsername();
         User user = userDAO.getUserByUsername(username);
 
+        if (user == null || !user.isVerified()) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
 
         UserSubmissionStats userSubmissionStats = new UserSubmissionStats();
 

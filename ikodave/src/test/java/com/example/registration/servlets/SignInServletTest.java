@@ -1,8 +1,7 @@
 package com.example.registration.servlets;
 
 import com.example.registration.dao.UserDAO;
-import com.example.registration.model.User;
-import com.example.registration.utils.UserInput;
+import com.example.registration.DTO.User;
 import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,8 +23,8 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.SessionConstants.USER_KEY;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -117,7 +116,7 @@ public class SignInServletTest {
 
         User mockUser = new User();
         mockUser.setUsername("testuser");
-        mockUser.setPassword(BCrypt.hashpw("testpass", BCrypt.gensalt()));
+        mockUser.setPasswordHash(BCrypt.hashpw("testpass", BCrypt.gensalt()));
 
         when(userDAO.getUserByUsername("testuser")).thenReturn(mockUser);
 
@@ -144,7 +143,7 @@ public class SignInServletTest {
 
         User mockUser = new User();
         mockUser.setUsername("testuser");
-        mockUser.setPassword(BCrypt.hashpw("testpass", BCrypt.gensalt()));
+        mockUser.setPasswordHash(BCrypt.hashpw("testpass", BCrypt.gensalt()));
 
         when(userDAO.getUserByUsername("testuser")).thenReturn(mockUser);
 

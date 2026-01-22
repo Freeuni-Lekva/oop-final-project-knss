@@ -2,13 +2,15 @@ package com.example.submissions.servlets;
 
 import com.example.problems.DAO.ProblemDAO;
 import com.example.problems.DTO.Problem;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.DAO.CodeLanguageDAO;
 import com.example.submissions.DAO.SubmissionDAO;
 import com.example.submissions.DAO.TestDAO;
 import com.example.submissions.DAO.VerdictDAO;
 import com.example.submissions.DTO.Submission;
 import com.example.submissions.DTO.TestCase;
+import com.example.submissions.Response.SubmissionResponse;
+import com.example.submissions.Utils.SubmissionsBus.AllSubmissionsEventBus;
 import com.example.submissions.Utils.Language.CodeLang;
 import com.example.submissions.Utils.SubmissionResult.SubmissionResult;
 import com.example.submissions.CodeRunner.DockerCodeRunner;
@@ -22,15 +24,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static com.example.submissions.Utils.Language.ToCodeLang.toCodeLang;
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 public class SubmitCodeServlet extends HttpServlet {
 
@@ -43,7 +44,7 @@ public class SubmitCodeServlet extends HttpServlet {
 
         if (user == null) {
             response.setContentType("application/json");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("{\"redirect\": \"/problems\"}");
             return;
         }
@@ -80,33 +81,61 @@ public class SubmitCodeServlet extends HttpServlet {
 
         final int submissionId = submissionDAO.insertSubmission(submission);
 
+        SubmissionResponse oldSubmissionResponse = new SubmissionResponse(
+                submissionId,
+                submission.getSubmitDate(),
+                user.getUsername(),
+                submission.getSolutionCode(),
+                problem.getTitle(),
+                codeLanguageDAO.getCodeLanguageById(submission.getCodeLanguageId()).getLanguage(),
+                verdictDAO.getVerdictById(submission.getVerdictId()).getVerdict(),
+                submission.getTime(),
+                submission.getMemory(),
+                submission.getLog()
+        );
+        AllSubmissionsEventBus.get().publish("new_submission", oldSubmissionResponse);
+//        SubmissionsEventBus.get().publish("new_submission", oldSubmissionResponse);
+
         executor.submit(() -> {
             try {
-                SubmissionResult submissionResult =
-                        dockerCodeRunner.testCodeMultipleTests(codeLang, solutionCode, problem.getTimeLimit(), testCases);
+                SubmissionResult submissionResult = dockerCodeRunner.testCodeMultipleTests(codeLang, solutionCode, problem.getTimeLimit(), testCases);
 
-
-                Submission updatedSubmission =
-                        new Submission(submissionId,
-                                submission.getUserId(),
-                                submission.getProblemId(),
-                                verdictDAO.getVerdictByName(submissionResult.getVerdict()).getId(),
-                                submission.getSolutionCode(),
-                                submission.getCodeLanguageId(),
-                                submissionResult.getTime(),
-                                submissionResult.getMemory(),
-                                submission.getSubmitDate(),
-                                submissionResult.getLog()
-                        );
-
+                Submission updatedSubmission = new Submission(
+                        submissionId,
+                        submission.getUserId(),
+                        submission.getProblemId(),
+                        verdictDAO.getVerdictByName(submissionResult.getVerdict()).getId(),
+                        submission.getSolutionCode(),
+                        submission.getCodeLanguageId(),
+                        submissionResult.getTime(),
+                        submissionResult.getMemory(),
+                        submission.getSubmitDate(),
+                        submissionResult.getLog()
+                );
                 submissionDAO.updateSubmission(updatedSubmission);
+
+
+                SubmissionResponse updatedSubmissionResponse = new SubmissionResponse(
+                        submissionId,
+                        updatedSubmission.getSubmitDate(),
+                        user.getUsername(),
+                        updatedSubmission.getSolutionCode(),
+                        problem.getTitle(),
+                        codeLanguageDAO.getCodeLanguageById(updatedSubmission.getCodeLanguageId()).getLanguage(),
+                        verdictDAO.getVerdictById(updatedSubmission.getVerdictId()).getVerdict(),
+                        updatedSubmission.getTime(),
+                        updatedSubmission.getMemory(),
+                        updatedSubmission.getLog()
+                );
+                AllSubmissionsEventBus.get().publish("update_submission", updatedSubmissionResponse);
+//                SubmissionsEventBus.get().publish("update_submission", updatedSubmissionResponse);
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });
 
         String redirectUrl = "/problems" + "/submissions/" +
-                        URLEncoder.encode(userSubmission.getProblemTitle(), StandardCharsets.UTF_8);
+                URLEncoder.encode(userSubmission.getProblemTitle(), StandardCharsets.UTF_8);
         response.setContentType("application/json");
         response.getWriter().write("{\"redirect\":\"" + redirectUrl + "\"}");
     }

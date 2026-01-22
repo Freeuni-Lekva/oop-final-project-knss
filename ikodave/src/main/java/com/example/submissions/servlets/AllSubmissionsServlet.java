@@ -2,7 +2,7 @@ package com.example.submissions.servlets;
 
 import com.example.problems.DAO.ProblemDAO;
 import com.example.registration.dao.UserDAO;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.DAO.CodeLanguageDAO;
 import com.example.submissions.DAO.SubmissionDAO;
 import com.example.submissions.DAO.VerdictDAO;
@@ -10,7 +10,6 @@ import com.example.submissions.DTO.Submission;
 import com.example.submissions.Response.SubmissionResponse;
 import com.google.gson.Gson;
 
-import javax.servlet.GenericServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,10 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.AttributeConstants.CODE_LANGUAGE_DAO_KEY;
-import static com.example.util.AttributeConstants.VERDICT_DAO_KEY;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.AttributeConstants.CODE_LANGUAGE_DAO_KEY;
+import static com.example.constants.AttributeConstants.VERDICT_DAO_KEY;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 public class AllSubmissionsServlet extends HttpServlet {
 
@@ -53,8 +52,9 @@ public class AllSubmissionsServlet extends HttpServlet {
                 submissions.stream().map((submission) -> {
 
                             return new SubmissionResponse(
+                                    submission.getId(),
                                     submission.getSubmitDate(),
-                                    userDAO.getUser(submission.getUserId()).getUsername(),
+                                    userDAO.getUserById(submission.getUserId()).getUsername(),
                                     submission.getSolutionCode(),
                                     problemDAO.getProblemTitle(submission.getProblemId()),
                                     codeLanguageDAO.getCodeLanguageById(submission.getCodeLanguageId()).getLanguage(),

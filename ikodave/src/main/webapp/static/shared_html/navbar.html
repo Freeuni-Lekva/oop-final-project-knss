@@ -1,78 +1,15 @@
+<link rel="stylesheet" href="/static/shared_html/navbar.css">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark classy-navbar">
   <div class="container-fluid">
     <a class="navbar-brand classy-brand" href="/home">Ikodave</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse classy-nav" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item" id="nav-home"><a class="nav-link" href="/home">Home</a></li>
-        <li class="nav-item" id="nav-register"><a class="nav-link" href="/registration">Register</a></li>
-        <li class="nav-item" id="nav-signin"><a class="nav-link" href="/signin">Sign In</a></li>
-        <li class="nav-item" id="nav-profile"><a class="nav-link" href="/profile">Profile</a></li>
-        <li class="nav-item" id="nav-problems"><a class="nav-link" href="/problems">Problems</a></li>
-        <li class="nav-item" id="nav-submissions"><a class="nav-link" href="/submissions">Submissions</a></li>
-        <li class="nav-item" id="nav-admin"><a class="nav-link" href="/AdminPage">Admin</a></li>
-        <li class="nav-item" id="nav-leaderboard"><a class="nav-link" href="/leaderboard">Leaderboard</a></li>
+    <div class="collapse navbar-collapse classy-nav" id="navbar">
+      <ul class="navbar-nav ms-auto" id="navbar-list">
+
       </ul>
     </div>
   </div>
 </nav>
-
-<style>
-  /* Modern glass effect */
-  .classy-navbar {
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
-    z-index: 999;
-    position: relative;
-  }
-
-  .classy-brand {
-    font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: 0.8px;
-    color: #fff;
-  }
-
-  .classy-nav .nav-link {
-    position: relative;
-    color: #ddd;
-    margin: 0 0.8rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-
-  .classy-nav .nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    transition: width 0.3s ease;
-  }
-
-  .classy-nav .nav-link:hover {
-    color: #fff;
-  }
-
-  .classy-nav .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .classy-nav .nav-link:focus {
-    outline: none;
-    color: #fff;
-  }
-
-  .classy-navbar .navbar-toggler {
-    border: none;
-  }
-
-  .classy-navbar .navbar-toggler-icon {
-    filter: invert(1);
-  }
-</style>

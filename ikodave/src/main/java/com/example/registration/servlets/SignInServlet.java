@@ -1,9 +1,8 @@
 package com.example.registration.servlets;
 
 import com.example.registration.dao.UserDAO;
-import com.example.registration.model.User;
-import com.example.registration.utils.UserInput;
-import com.example.util.SessionConstants;
+import com.example.registration.DTO.User;
+import com.example.registration.Responce.UserSignInInput;
 import com.google.gson.Gson;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -11,20 +10,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.registration.servlets.Helper.*;
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.registration.servlets.Authentication.*;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 public class SignInServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            if (!redirectProfileIfRegistered(request, response)) {
+            if (!redirectProfileIfSignedIn(request, response)) {
                 request.getRequestDispatcher("/static/authentication/signin.html")
                         .forward(request, response);
             }
@@ -34,54 +32,41 @@ public class SignInServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        UserDAO userDao = (UserDAO) request.getServletContext().getAttribute(USER_DAO_KEY);
         Gson gson = (Gson) getServletContext().getAttribute(GSON_KEY);
 
-        try {
-            if (redirectProfileIfRegistered(request, response)) return;
+        if (redirectProfileIfSignedIn(request, response)) return;
 
-            UserInput userInput = gson.fromJson(request.getReader(), UserInput.class);
-            String username = userInput.getUsername();
-            String password = userInput.getPassword();
+        UserSignInInput userSignInInput = gson.fromJson(request.getReader(), UserSignInInput.class);
+        String username = userSignInInput.getUsername();
+        String password = userSignInInput.getPassword();
+        User user = userDao.getUserByUsername(username);
 
-            UserDAO userDao = (UserDAO) request.getServletContext().getAttribute(USER_DAO_KEY);
-            if (userDao == null) throw new IllegalStateException("UserDAO not found in ServletContext.");
+        Map<String, String> registrationResult = new HashMap<>();
 
-            User user = userDao.getUserByUsername(username);
-
-            boolean authOK = false;
-            if (user != null) {
-                try {
-                    authOK = BCrypt.checkpw(password, user.getPassword());
-                } catch (IllegalArgumentException ignored) {
-                }
-            }
-
-            Map<String, String> result = new HashMap<>();
-            if (authOK) {
-                request.getSession().setAttribute(USER_KEY, user);
-                result.put("status", "ok");
-            } else {
-                result.put("status", "invalid");
-            }
-
-            sendJsonResponse(response, result);
-
-        } catch (ServletException e) {
-            e.printStackTrace(); // ✅ Show in logs
-            throw new IOException("Forwarding failed", e);
-        } catch (IOException e) {
-            e.printStackTrace(); // ✅ Show in logs
-            throw e;
-        } catch (Exception e) {
-            e.printStackTrace(); // ✅ Catch any unexpected errors
-            Map<String, String> result = new HashMap<>();
-            result.put("status", "error");
-            sendJsonResponse(response, result);
+        if (user == null) {
+            registrationResult.put("status", "invalid");
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(gson.toJson(registrationResult));
+            return;
         }
 
+        boolean authSuccess = BCrypt.checkpw(password, user.getPasswordHash());
+
+        if (authSuccess) {
+            request.getSession().setAttribute(USER_KEY, user);
+            registrationResult.put("status", "ok");
+        } else {
+            registrationResult.put("status", "invalid");
+        }
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(gson.toJson(registrationResult));
     }
 
 }

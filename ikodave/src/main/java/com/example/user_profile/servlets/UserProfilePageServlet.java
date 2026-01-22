@@ -1,6 +1,6 @@
 package com.example.user_profile.servlets;
 
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 public class UserProfilePageServlet extends HttpServlet {
     @Override
@@ -16,7 +16,7 @@ public class UserProfilePageServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute(USER_KEY);
 
         if (user == null) {
-            response.sendRedirect("/registration");
+            response.sendRedirect("/signin");
         }
         else {
             response.sendRedirect("/profile/" + user.getUsername());

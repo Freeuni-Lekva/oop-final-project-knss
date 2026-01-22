@@ -1,9 +1,7 @@
 package com.example.admin.util;
 
 import com.example.admin.dto.Role;
-import com.example.leaderboard.dto.UserWithScore;
-import com.example.util.DatabaseConstants;
-import net.bytebuddy.asm.Advice;
+import com.example.constants.DatabaseConstants;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,7 +1,6 @@
 package com.example.problems.Filters;
 
-import com.example.problems.Filters.FilterStatusSolved;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.*;
 

@@ -2,7 +2,7 @@ package com.example.submissions.servlets;
 
 import com.example.problems.DAO.ProblemDAO;
 import com.example.problems.DTO.Problem;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.DAO.CodeLanguageDAO;
 import com.example.submissions.DAO.SubmissionDAO;
 import com.example.submissions.DAO.VerdictDAO;
@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.SessionConstants.USER_KEY;
 
 
 public class SubmissionsListServlet extends HttpServlet  {
@@ -59,19 +59,20 @@ public class SubmissionsListServlet extends HttpServlet  {
                 submissions.stream().map((submission) -> {
 
 
-                    return new SubmissionResponse(
-                            submission.getSubmitDate(),
-                            user.getUsername(),
-                            submission.getSolutionCode(),
-                            problemTitle,
-                            codeLanguageDAO.getCodeLanguageById(submission.getCodeLanguageId()).getLanguage(),
-                            verdictDAO.getVerdictById(submission.getVerdictId()).getVerdict(),
-                            submission.getTime(),
-                            submission.getMemory(),
-                            submission.getLog()
-                    );
-                }
-        ).toList();
+                            return new SubmissionResponse(
+                                    submission.getId(),
+                                    submission.getSubmitDate(),
+                                    user.getUsername(),
+                                    submission.getSolutionCode(),
+                                    problemTitle,
+                                    codeLanguageDAO.getCodeLanguageById(submission.getCodeLanguageId()).getLanguage(),
+                                    verdictDAO.getVerdictById(submission.getVerdictId()).getVerdict(),
+                                    submission.getTime(),
+                                    submission.getMemory(),
+                                    submission.getLog()
+                            );
+                        }
+                ).toList();
 
 
 

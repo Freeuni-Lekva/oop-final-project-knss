@@ -1,6 +1,6 @@
 package com.example.user_profile.dao;
 
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.DTO.SubmissionVerdict;
 import org.apache.commons.dbcp2.BasicDataSource;
 

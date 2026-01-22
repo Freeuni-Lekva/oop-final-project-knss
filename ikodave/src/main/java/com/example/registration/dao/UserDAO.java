@@ -1,18 +1,23 @@
 package com.example.registration.dao;
 
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 
 public interface UserDAO {
 
-    User getUser(int userId);
+    User getUserById(int userId);
 
-    void addUser(User user);
+    User addUser(User user);
 
     boolean authenticate(User user);
 
     void deleteUser(String username);
 
-    boolean userExists(String username);
+    boolean usernameExists(String username);
+
+    boolean verifiedMailExists(String mail);
 
     User getUserByUsername(String username);
+
+    User getUserByMail(String username);
+
 }

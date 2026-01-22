@@ -2,7 +2,7 @@ package com.example.submissions.servlets;
 
 import com.example.problems.DAO.ProblemDAO;
 import com.example.problems.DTO.Problem;
-import com.example.registration.model.User;
+import com.example.registration.DTO.User;
 import com.example.submissions.CodeRunner.DockerCodeRunner;
 import com.example.submissions.DAO.*;
 import com.example.submissions.DTO.*;
@@ -19,11 +19,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.*;
 
 import java.io.*;
-import java.sql.Timestamp;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
+import static com.example.constants.AttributeConstants.*;
+import static com.example.constants.SessionConstants.USER_KEY;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 

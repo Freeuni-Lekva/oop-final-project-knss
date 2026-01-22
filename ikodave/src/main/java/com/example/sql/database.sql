@@ -11,12 +11,16 @@ CREATE TABLE IF NOT EXISTS user_role
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id                      INT AUTO_INCREMENT PRIMARY KEY,
-    role_id                 INT,
-    username                VARCHAR(64)  NOT NULL UNIQUE,
-    password                VARCHAR(256) NOT NULL,
-    register_date           DATETIME NOT NULL,
-    FOREIGN KEY (role_id)   REFERENCES user_role (id)
+    id                              INT AUTO_INCREMENT PRIMARY KEY,
+    role_id                         INT,
+    mail                            VARCHAR(64)  NOT NULL,
+    username                        VARCHAR(64)  NOT NULL UNIQUE,
+    password_hash                   VARCHAR(256) NOT NULL,
+    is_verified                     BOOLEAN NOT NULL DEFAULT FALSE,
+    verification_token              VARCHAR(64) UNIQUE,
+    verification_token_expiry       DATETIME,
+    register_date                   TIMESTAMP NOT NULL,
+    FOREIGN KEY (role_id)           REFERENCES user_role (id)
 );
 
 CREATE TABLE IF NOT EXISTS problem_status
@@ -60,7 +64,7 @@ CREATE TABLE IF NOT EXISTS problems
     memory_limit        BIGINT,
     input_spec          TEXT NOT NULL,
     output_spec         TEXT NOT NULL,
-    create_date         DATETIME NOT NULL,
+    create_date         TIMESTAMP NOT NULL,
     FOREIGN KEY (difficulty_id) REFERENCES problem_difficulty (id)
 );
 
@@ -83,7 +87,7 @@ CREATE TABLE IF NOT EXISTS submissions
     code_language_id    INT NOT NULL,
     time                BIGINT NOT NULL,
     memory              BIGINT,
-    submit_date         DATETIME NOT NULL,
+    submit_date         TIMESTAMP NOT NULL,
     log                 TEXT,
     FOREIGN KEY (problem_id) REFERENCES problems (id),
     FOREIGN KEY (user_id) REFERENCES users (id),

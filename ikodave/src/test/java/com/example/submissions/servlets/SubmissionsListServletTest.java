@@ -1,15 +1,9 @@
 package com.example.submissions.servlets;
 
 import com.example.problems.DAO.ProblemDAO;
-import com.example.problems.DTO.Problem;
-import com.example.registration.model.User;
 import com.example.submissions.DAO.CodeLanguageDAO;
 import com.example.submissions.DAO.SubmissionDAO;
 import com.example.submissions.DAO.VerdictDAO;
-import com.example.submissions.DTO.Submission;
-import com.example.submissions.DTO.CodeLanguage;
-import com.example.submissions.DTO.SubmissionVerdict;
-import com.example.submissions.Response.SubmissionResponse;
 import com.google.gson.Gson;
 
 import org.junit.Before;
@@ -25,13 +19,8 @@ import javax.servlet.http.HttpSession;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.Map;
 
-import static com.example.util.AttributeConstants.*;
-import static com.example.util.SessionConstants.USER_KEY;
-import static org.junit.Assert.*;
+import static com.example.constants.AttributeConstants.*;
 import static org.mockito.Mockito.*;
 
 public class SubmissionsListServletTest {

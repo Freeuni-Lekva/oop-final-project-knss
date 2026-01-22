@@ -2,10 +2,17 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/problems/DAO/SQLProblemDAO.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/example/registration/dao/MySQLUserDao.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/registration/dao/SQLUserDAO.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/database.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertAdmin.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertCodeLanguages.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertProblemDifficulties.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertProblemStatuses.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertProblemTopics.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertProblemTopicsRelation.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertProblems.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertSubmissionVerdicts.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertTestCases.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/sql/insertUserRole.sql" dialect="MySQL" />
   </component>
 </project>

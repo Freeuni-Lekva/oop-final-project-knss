@@ -1,8 +1,6 @@
 package com.example.problems.utils;
 
-import com.example.util.DatabaseConstants.*;
-
-import java.nio.charset.StandardCharsets;
+import com.example.constants.DatabaseConstants.*;
 
 import static java.lang.String.format;
 

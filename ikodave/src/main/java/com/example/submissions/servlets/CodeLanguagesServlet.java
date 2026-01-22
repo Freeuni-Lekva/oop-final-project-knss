@@ -2,7 +2,6 @@ package com.example.submissions.servlets;
 
 import com.example.submissions.DAO.CodeLanguageDAO;
 import com.example.submissions.DTO.CodeLanguage;
-import com.example.util.DatabaseConstants;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServlet;
@@ -12,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.CODE_LANGUAGE_DAO_KEY;
-import static com.example.util.AttributeConstants.GSON_KEY;
+import static com.example.constants.AttributeConstants.CODE_LANGUAGE_DAO_KEY;
+import static com.example.constants.AttributeConstants.GSON_KEY;
 
 public class CodeLanguagesServlet extends HttpServlet {
 

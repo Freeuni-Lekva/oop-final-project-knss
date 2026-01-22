@@ -19,8 +19,8 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.CODE_LANGUAGE_DAO_KEY;
-import static com.example.util.AttributeConstants.GSON_KEY;
+import static com.example.constants.AttributeConstants.CODE_LANGUAGE_DAO_KEY;
+import static com.example.constants.AttributeConstants.GSON_KEY;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 

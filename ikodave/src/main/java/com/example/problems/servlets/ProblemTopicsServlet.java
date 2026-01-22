@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.example.util.AttributeConstants.GSON_KEY;
-import static com.example.util.AttributeConstants.TOPIC_DAO_KEY;
+import static com.example.constants.AttributeConstants.GSON_KEY;
+import static com.example.constants.AttributeConstants.TOPIC_DAO_KEY;
 
 public class ProblemTopicsServlet extends HttpServlet {
 
